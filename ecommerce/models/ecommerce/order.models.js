@@ -8,7 +8,8 @@ const orderItemSchema = new mongoose.Schema({
     },
     quantity: {
         type: Number,
-        required: true
+        required: true,
+        default: 1
     }
 })
 
@@ -26,6 +27,15 @@ const orderSchema = new mongoose.Schema(
         },
         orderItems: {
             type: [orderItemSchema],
+        },
+        address: {
+            type: String,
+            required: true
+        },
+        status: {
+            type: String,
+            enum:["PENDING", "CANCELED", "DELIVERED"],
+            default: "PENDING"
         }
     }, 
     {timestamps: true})
